@@ -1,0 +1,92 @@
+# LockedChests Configuration
+
+# World filtering configuration
+# worlds-mode: false (default) = blacklist mode (plugin works everywhere EXCEPT listed worlds)
+#             true = whitelist mode (plugin works ONLY in listed worlds)
+worlds-mode: false
+worlds:
+  - disabledworld
+  - disabledworld_nether
+  - disabledworld_the_end
+
+# Key item configuration
+key:
+  # Material for the key item
+  material: TRIPWIRE_HOOK
+  # Display name for the key
+  name: "&6Chest Key"
+  # Lore for the key
+  lore:
+    - "&7Use this key to open locked chests"
+    - "&7Chest ID: %id%"
+
+# Blank key configuration
+blank-key:
+  # Display name for blank key
+  name: "&7Blank Key"
+  # Lore for blank key
+  lore:
+    - "&7Use this to lock a chest"
+    - "&7Right-click a chest to lock it"
+
+# Crafting recipe for blank key
+# Set to false to disable crafting
+crafting-recipe:
+  enabled: true
+  # Shapeless recipe (items can be placed anywhere) or shaped recipe (must follow pattern)
+  shapeless: true 
+  # Shape of the recipe (3x3 or 2x2) - only used if shapeless is false, if shapeless is true then just set the ingredients list
+  shape:  # this option is also know as pattern, it's just called shape here to avoid confusion with shapeless
+    - "T"
+    - "I"
+  # T = TRIPWIRE_HOOK, I = IRON_INGOT
+  ingredients:
+    T: TRIPWIRE_HOOK
+    I: IRON_INGOT
+
+# Access control options
+access:
+  # Allow owner to open (player who locked the chest)
+  allow-owner: true
+  # Allow player clicking with the right key
+  allow-key-click: true
+  # Allow player with key in inventory (not necessarily in hand)
+  allow-key-inventory: true
+  # Allow password authentication
+  allow-password: true
+  # Timeout for password entry in seconds
+  password-timeout: 30
+
+# Locking behavior
+locking:
+  # Ask player if they want to lock chest when placing it
+  ask-on-place: false
+  # Allow locking by clicking chest with blank key
+  allow-key-click-lock: true
+  # Only allow locking if the player just placed the chest
+  require-just-placed: true
+  # Time window (in seconds) after placing to lock
+  place-time-window: 10
+
+# Key duplication
+key-duplication:
+  # Allow duplicating keys in crafting table with blank keys (shapeless recipe: 1 key + 1 blank key = 2 keys)
+  enabled: true
+
+# Messages
+messages:
+  chest-locked: "&aChest locked successfully!"
+  chest-unlocked: "&aChest unlocked!"
+  cannot-open: "&cYou can't open this chest!"
+  cannot-break: "&cYou can't break this chest!"
+  enter-password: "&eEnter the password for this chest in chat:"
+  password-correct: "&aPassword correct! Opening chest..."
+  password-incorrect: "&cIncorrect password!"
+  password-timeout: "&cPassword entry timed out."
+  lock-prompt: "&eWould you like to lock this chest? Type 'yes' in chat within 10 seconds."
+  not-owner: "&cYou are not the owner of this chest!"
+  key-created: "&aKey created for this chest!"
+  no-blank-key: "&cYou need a blank key to lock this chest!"
+  chest-already-locked: "&cThis chest is already locked!"
+  password-set: "&aPassword set for this chest!"
+  world-not-enabled: "&cLocked chests are not enabled in this world!"

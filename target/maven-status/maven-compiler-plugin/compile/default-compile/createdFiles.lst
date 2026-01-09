@@ -1,0 +1,12 @@
+me\theTWIXhunter\managers\ChestManager.class
+me\theTWIXhunter\commands\SetPasswordCommand.class
+me\theTWIXhunter\listeners\CraftingListener.class
+me\theTWIXhunter\commands\UnlockCommand.class
+me\theTWIXhunter\listeners\ChestListener.class
+me\theTWIXhunter\commands\AddKeyCommand.class
+me\theTWIXhunter\data\LockedChest.class
+me\theTWIXhunter\managers\KeyManager.class
+me\theTWIXhunter\commands\GiveKeyCommand.class
+me\theTWIXhunter\commands\LockedChestsCommand.class
+me\theTWIXhunter\LockedChestsPlugin.class
+me\theTWIXhunter\listeners\ChestListener$1.class

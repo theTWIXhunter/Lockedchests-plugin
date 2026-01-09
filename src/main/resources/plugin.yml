@@ -1,0 +1,36 @@
+name: LockedChests
+version: 1.0.0
+main: me.theTWIXhunter.LockedChestsPlugin
+api-version: '1.21'
+author: theTWIXhunter
+description: A plugin that allows players to lock chests with keys and passwords
+
+commands:
+  lockedchests:
+    description: Main command for LockedChests
+    aliases: [lc, chest]
+    usage: /lockedchests <reload|setpassword|unlock>
+  setpassword:
+    description: Set a password for a locked chest
+    usage: /setpassword <password>
+  unlock:
+    description: Unlock a chest you own
+    usage: /unlock
+  givekey:
+    description: Give keys to players
+    usage: /givekey <player> <ID/blank> <amount>
+    permission: lockedchests.admin
+  addkey:
+    description: Add a key to a chest (internal command)
+    usage: /addkey
+
+permissions:
+  lockedchests.use:
+    description: Allows using locked chests
+    default: true
+  lockedchests.admin:
+    description: Admin permissions
+    default: op
+  lockedchests.bypass:
+    description: Bypass all chest locks
+    default: op
