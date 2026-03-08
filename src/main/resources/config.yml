@@ -49,6 +49,9 @@ crafting-recipe:
 
 # Access control options
 access:
+  # Enable bypass permission (lockedchests.bypass) - OPs have this by default
+  # Set to false to disable bypass entirely, even for OPs
+  enable-bypass-permission: true
   # Allow owner to open (player who locked the chest)
   allow-owner: true
   # Allow player clicking with the right key

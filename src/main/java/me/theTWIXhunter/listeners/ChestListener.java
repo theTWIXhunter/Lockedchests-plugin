@@ -181,9 +181,11 @@ public class ChestListener implements Listener {
         }
         
         // Check if player has permission to break
-        if (player.hasPermission("lockedchests.bypass")) {
-            chestManager.unlockChest(lockedChest.getChestId());
-            return; // Allow breaking
+        if (plugin.getConfig().getBoolean("access.enable-bypass-permission", true)) {
+            if (player.hasPermission("lockedchests.bypass")) {
+                chestManager.unlockChest(lockedChest.getChestId());
+                return; // Allow breaking
+            }
         }
         
         // Check if player is owner
@@ -419,11 +421,13 @@ public class ChestListener implements Listener {
     
     private boolean canOpenChest(Player player, LockedChest lockedChest, ItemStack heldItem) {
         // Check bypass permission
-        if (player.hasPermission("lockedchests.bypass")) {
-            if (plugin.getConfig().getBoolean("debug", false)) {
-                player.sendMessage("§7[Debug] Opening chest - you have bypass permission");
+        if (plugin.getConfig().getBoolean("access.enable-bypass-permission", true)) {
+            if (player.hasPermission("lockedchests.bypass")) {
+                if (plugin.getConfig().getBoolean("debug", false)) {
+                    player.sendMessage("§7[Debug] Opening chest - you have bypass permission");
+                }
+                return true;
             }
-            return true;
         }
         
         // Check if player is owner
