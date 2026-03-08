@@ -237,12 +237,16 @@ public class ChestListener implements Listener {
         // Check if chest or its double chest half is locked
         LockedChest lockedChest = getLockedChestOrDouble(block);
         if (lockedChest == null) {
-            player.sendMessage("§7[Debug] Chest is not locked");
+            if (plugin.getConfig().getBoolean("debug", false)) {
+                player.sendMessage("§7[Debug] Chest is not locked");
+            }
             return; // Not locked, allow opening
         }
         
-        player.sendMessage("§7[Debug] Chest is locked - Owner: " + lockedChest.getOwnerId() + " - Your UUID: " + player.getUniqueId());
-        player.sendMessage("§7[Debug] Authorized keys: " + lockedChest.getAuthorizedKeyIds().size());
+        if (plugin.getConfig().getBoolean("debug", false)) {
+            player.sendMessage("§7[Debug] Chest is locked - Owner: " + lockedChest.getOwnerId() + " - Your UUID: " + player.getUniqueId());
+            player.sendMessage("§7[Debug] Authorized keys: " + lockedChest.getAuthorizedKeyIds().size());
+        }
         
         // Check access permissions
         if (canOpenChest(player, lockedChest, item)) {
@@ -416,14 +420,18 @@ public class ChestListener implements Listener {
     private boolean canOpenChest(Player player, LockedChest lockedChest, ItemStack heldItem) {
         // Check bypass permission
         if (player.hasPermission("lockedchests.bypass")) {
-            player.sendMessage("§7[Debug] Opening chest - you have bypass permission");
+            if (plugin.getConfig().getBoolean("debug", false)) {
+                player.sendMessage("§7[Debug] Opening chest - you have bypass permission");
+            }
             return true;
         }
         
         // Check if player is owner
         if (plugin.getConfig().getBoolean("access.allow-owner", true)) {
             if (player.getUniqueId().equals(lockedChest.getOwnerId())) {
-                player.sendMessage("§7[Debug] Opening chest - you are the owner");
+                if (plugin.getConfig().getBoolean("debug", false)) {
+                    player.sendMessage("§7[Debug] Opening chest - you are the owner");
+                }
                 return true;
             }
         }
@@ -433,7 +441,9 @@ public class ChestListener implements Listener {
             if (keyManager.isKey(heldItem) && !keyManager.isBlankKey(heldItem)) {
                 String keyId = keyManager.getKeyId(heldItem);
                 if (keyId != null && lockedChest.isKeyAuthorized(keyId)) {
-                    player.sendMessage("§7[Debug] Opening chest - you have the right key");
+                    if (plugin.getConfig().getBoolean("debug", false)) {
+                        player.sendMessage("§7[Debug] Opening chest - you have the right key");
+                    }
                     return true;
                 }
             }
@@ -445,7 +455,9 @@ public class ChestListener implements Listener {
                 if (keyManager.isKey(item) && !keyManager.isBlankKey(item)) {
                     String keyId = keyManager.getKeyId(item);
                     if (keyId != null && lockedChest.isKeyAuthorized(keyId)) {
-                        player.sendMessage("§7[Debug] Opening chest - you have the key in inventory");
+                        if (plugin.getConfig().getBoolean("debug", false)) {
+                            player.sendMessage("§7[Debug] Opening chest - you have the key in inventory");
+                        }
                         return true;
                     }
                 }

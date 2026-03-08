@@ -1,5 +1,8 @@
 # LockedChests Configuration
 
+# Debug mode - shows detailed messages about chest interactions
+debug: false
+
 # World filtering configuration
 # worlds-mode: false (default) = blacklist mode (plugin works everywhere EXCEPT listed worlds)
 #             true = whitelist mode (plugin works ONLY in listed worlds)
